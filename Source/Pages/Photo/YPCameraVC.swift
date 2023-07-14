@@ -205,7 +205,9 @@ internal final class YPCameraVC: UIViewController, UIGestureRecognizerDelegate, 
     
     @objc
     func flashButtonTapped() {
-        photoCapture.device?.tryToggleTorch()
+        if #available(iOS 14.0, macCatalyst 14.0, *) {
+            photoCapture.device?.tryToggleTorch()
+        }
         updateFlashButtonUI()
     }
     

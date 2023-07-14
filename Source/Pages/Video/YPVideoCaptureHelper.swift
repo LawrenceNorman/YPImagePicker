@@ -180,7 +180,9 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     public func toggleTorch() {
-        videoInput?.device.tryToggleTorch()
+        if #available(iOS 14.0, macCatalyst 14.0, *) {
+            videoInput?.device.tryToggleTorch()
+        }
     }
     
     // MARK: - Recording
