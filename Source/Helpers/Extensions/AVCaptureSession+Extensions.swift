@@ -8,6 +8,7 @@
 
 import AVFoundation
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension AVCaptureSession {
     func resetInputs() {
         // remove all sesison inputs

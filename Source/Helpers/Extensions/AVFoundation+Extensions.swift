@@ -37,6 +37,7 @@ internal func thumbnailFromVideoPath(_ path: URL) -> UIImage {
     return UIImage()
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal func setFocusPointOnDevice(device: AVCaptureDevice, point: CGPoint) {
     do {
         try device.lockForConfiguration()
@@ -54,6 +55,7 @@ internal func setFocusPointOnDevice(device: AVCaptureDevice, point: CGPoint) {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal func setFocusPointOnCurrentDevice(_ point: CGPoint) {
     if let device = AVCaptureDevice.default(for: AVMediaType.video) {
         do {
