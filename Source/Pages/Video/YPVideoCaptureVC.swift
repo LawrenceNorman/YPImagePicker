@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal class YPVideoCaptureVC: UIViewController, YPPermissionCheckable {
     var didCaptureVideo: ((URL) -> Void)?
     

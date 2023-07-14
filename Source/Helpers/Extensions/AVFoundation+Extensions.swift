@@ -13,6 +13,7 @@ import AVFoundation
 // MARK: - Global functions
 
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal func flippedDeviceInputForInput(_ input: AVCaptureDeviceInput) -> AVCaptureDeviceInput? {
     let position: AVCaptureDevice.Position = (input.device.position == .front) ? .back : .front
     guard let aDevice = AVCaptureDevice.deviceForPosition(position) else {

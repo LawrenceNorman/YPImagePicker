@@ -35,7 +35,7 @@ internal final class YPPhotoCaptureHelper: NSObject {
 }
 
 // MARK: - Public
-
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPPhotoCaptureHelper {
     func shoot(completion: @escaping (Data) -> Void) {
         block = completion
@@ -84,13 +84,13 @@ extension YPPhotoCaptureHelper {
             defer { device.unlockForConfiguration() }
             
             var minAvailableVideoZoomFactor: CGFloat = 1.0
-            if #available(iOS 11.0, *) {
-                minAvailableVideoZoomFactor = device.minAvailableVideoZoomFactor
-            }
+            
+            minAvailableVideoZoomFactor = device.minAvailableVideoZoomFactor
+            
             var maxAvailableVideoZoomFactor: CGFloat = device.activeFormat.videoMaxZoomFactor
-            if #available(iOS 11.0, *) {
-                maxAvailableVideoZoomFactor = device.maxAvailableVideoZoomFactor
-            }
+            
+            maxAvailableVideoZoomFactor = device.maxAvailableVideoZoomFactor
+            
             maxAvailableVideoZoomFactor = min(maxAvailableVideoZoomFactor, YPConfig.maxCameraZoomFactor)
             
             let desiredZoomFactor = initVideoZoomFactor * scale
@@ -168,6 +168,7 @@ private extension YPPhotoCaptureHelper {
         return settings
     }
     
+    @available(iOS 14.0, macCatalyst 14.0, *)
     private func setupCaptureSession() {
         session.beginConfiguration()
         session.sessionPreset = .photo
@@ -229,6 +230,7 @@ private extension YPPhotoCaptureHelper {
         }
     }
     
+    @available(iOS 14.0, macCatalyst 14.0, *)
     private func flip() {
         session.resetInputs()
         guard let di = deviceInput else { return }

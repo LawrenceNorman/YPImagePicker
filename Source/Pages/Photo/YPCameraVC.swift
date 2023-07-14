@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 import Photos
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal final class YPCameraVC: UIViewController, UIGestureRecognizerDelegate, YPPermissionCheckable {
     var didCapturePhoto: ((UIImage) -> Void)?
     let v: YPCameraView!
@@ -62,7 +63,7 @@ internal final class YPCameraVC: UIViewController, UIGestureRecognizerDelegate, 
         pinchRecongizer.delegate = self
         v.previewViewContainer.addGestureRecognizer(pinchRecongizer)
     }
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     func start() {
         doAfterCameraPermissionCheck { [weak self] in
             guard let previewContainer = self?.v.previewViewContainer else {
@@ -205,9 +206,7 @@ internal final class YPCameraVC: UIViewController, UIGestureRecognizerDelegate, 
     
     @objc
     func flashButtonTapped() {
-        if #available(iOS 14.0, macCatalyst 14.0, *) {
-            photoCapture.device?.tryToggleTorch()
-        }
+        photoCapture.device?.tryToggleTorch()
         updateFlashButtonUI()
     }
     

@@ -37,6 +37,7 @@ extension AVCaptureDevice {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal extension AVCaptureDevice {
     class var audioCaptureDevice: AVCaptureDevice? {
         let availableMicrophoneAudioDevices = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInMicrophone], mediaType: .audio, position: .unspecified).devices

@@ -15,6 +15,7 @@ protocol YPPickerVCDelegate: AnyObject {
     func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     
     let albumsManager = YPAlbumsManager()
@@ -338,6 +339,7 @@ open class YPPickerVC: YPBottomPager, YPBottomPagerDelegate {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPPickerVC: YPLibraryViewDelegate {
     
     public func libraryViewDidTapNext() {
@@ -368,9 +370,7 @@ extension YPPickerVC: YPLibraryViewDelegate {
     
     public func libraryViewDidToggleMultipleSelection(enabled: Bool) {
         var offset = v.header.frame.height
-        if #available(iOS 11.0, *) {
-            offset += v.safeAreaInsets.bottom
-        }
+        offset += v.safeAreaInsets.bottom
         
         v.header.bottomConstraint?.constant = enabled ? offset : 0
         v.layoutIfNeeded()

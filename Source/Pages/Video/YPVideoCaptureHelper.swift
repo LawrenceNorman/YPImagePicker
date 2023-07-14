@@ -32,7 +32,7 @@ class YPVideoCaptureHelper: NSObject {
     private var initVideoZoomFactor: CGFloat = 1.0
     
     // MARK: - Init
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func start(previewView: UIView, withVideoRecordingLimit: TimeInterval, completion: @escaping () -> Void) {
         self.previewView = previewView
         self.videoRecordingTimeLimit = withVideoRecordingLimit
@@ -75,7 +75,7 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     // MARK: - Flip Camera
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func flipCamera(completion: @escaping () -> Void) {
         sessionQueue.async { [weak self] in
             guard let strongSelf = self else {
@@ -208,7 +208,7 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     // Private
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     private func setupCaptureSession() {
         session.beginConfiguration()
         let cameraPosition: AVCaptureDevice.Position = YPConfig.usesFrontCamera ? .front : .back

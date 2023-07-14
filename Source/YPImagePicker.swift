@@ -10,11 +10,13 @@ import UIKit
 import AVFoundation
 import Photos
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 public protocol YPImagePickerDelegate: AnyObject {
     func imagePickerHasNoItemsInLibrary(_ picker: YPImagePicker)
     func shouldAddToSelection(indexPath: IndexPath, numSelections: Int) -> Bool
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 open class YPImagePicker: UINavigationController {
     public typealias DidFinishPickingCompletion = (_ items: [YPMediaItem], _ cancelled: Bool) -> Void
 
@@ -169,6 +171,7 @@ open class YPImagePicker: UINavigationController {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPImagePicker: YPPickerVCDelegate {
     func libraryHasNoItems() {
         self.imagePickerDelegate?.imagePickerHasNoItemsInLibrary(self)
