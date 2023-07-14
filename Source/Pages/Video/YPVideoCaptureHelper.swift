@@ -11,6 +11,7 @@ import AVFoundation
 import CoreMotion
 
 /// Abstracts Low Level AVFoudation details.
+@available(iOS 14.0, macCatalyst 14.0, *)
 class YPVideoCaptureHelper: NSObject {
     public var isRecording: Bool {
         return videoOutput.isRecording
@@ -134,13 +135,13 @@ class YPVideoCaptureHelper: NSObject {
             defer { device.unlockForConfiguration() }
 
             var minAvailableVideoZoomFactor: CGFloat = 1.0
-            if #available(iOS 11.0, *) {
-                minAvailableVideoZoomFactor = device.minAvailableVideoZoomFactor
-            }
+            
+            minAvailableVideoZoomFactor = device.minAvailableVideoZoomFactor
+            
             var maxAvailableVideoZoomFactor: CGFloat = device.activeFormat.videoMaxZoomFactor
-            if #available(iOS 11.0, *) {
-                maxAvailableVideoZoomFactor = device.maxAvailableVideoZoomFactor
-            }
+            
+            maxAvailableVideoZoomFactor = device.maxAvailableVideoZoomFactor
+            
             maxAvailableVideoZoomFactor = min(maxAvailableVideoZoomFactor, YPConfig.maxCameraZoomFactor)
 
             let desiredZoomFactor = initVideoZoomFactor * scale
@@ -180,9 +181,7 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     public func toggleTorch() {
-        if #available(iOS 14.0, macCatalyst 14.0, *) {
-            videoInput?.device.tryToggleTorch()
-        }
+        videoInput?.device.tryToggleTorch()
     }
     
     // MARK: - Recording
@@ -271,6 +270,7 @@ class YPVideoCaptureHelper: NSObject {
     // MARK: - Orientation
 
     /// This enables to get the correct orientation even when the device is locked for orientation \o/
+    @available(iOS 14.0, macCatalyst 14.0, *)
     private func checkOrientation(completion: @escaping(_ orientation: AVCaptureVideoOrientation?) -> Void) {
         motionManager.accelerometerUpdateInterval = 5
         motionManager.startAccelerometerUpdates( to: OperationQueue() ) { [weak self] data, _ in
