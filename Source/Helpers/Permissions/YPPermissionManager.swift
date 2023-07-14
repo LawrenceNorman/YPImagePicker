@@ -51,7 +51,8 @@ internal struct YPPermissionManager {
             ypLog("Bug. Write to developers please.")
         }
     }
-
+    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     static func checkCameraPermissionAndAskIfNeeded(sourceVC: UIViewController,
                                                     completion: @escaping YPPermissionManagerCompletion) {
         let type: AVMediaType = .video
