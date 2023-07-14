@@ -14,6 +14,7 @@ enum YPFlashMode {
     case auto
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPFlashMode {
     init(torchMode: AVCaptureDevice.TorchMode?) {
         switch torchMode {
@@ -30,6 +31,7 @@ extension YPFlashMode {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPFlashMode {
     func flashImage() -> UIImage {
         switch self {

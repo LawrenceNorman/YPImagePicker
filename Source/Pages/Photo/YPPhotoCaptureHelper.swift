@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal final class YPPhotoCaptureHelper: NSObject {
     var currentFlashMode: YPFlashMode {
         return YPFlashMode(torchMode: device?.torchMode)
@@ -119,6 +120,7 @@ extension YPPhotoCaptureHelper {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPPhotoCaptureHelper: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let data = photo.fileDataRepresentation() else { return }
@@ -127,6 +129,7 @@ extension YPPhotoCaptureHelper: AVCapturePhotoCaptureDelegate {
 }
 
 // MARK: - Private
+@available(iOS 14.0, macCatalyst 14.0, *)
 private extension YPPhotoCaptureHelper {
     
     // MARK: Setup
@@ -135,11 +138,10 @@ private extension YPPhotoCaptureHelper {
         var settings = AVCapturePhotoSettings()
         
         // Catpure Heif when available.
-        if #available(iOS 11.0, *) {
-            if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
-                settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
-            }
+        if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
+            settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
         }
+        
         
         // Catpure Highest Quality possible.
         settings.isHighResolutionPhotoEnabled = true

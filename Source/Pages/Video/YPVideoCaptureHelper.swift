@@ -110,7 +110,7 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     // MARK: - Focus
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func focus(onPoint point: CGPoint) {
         if let device = videoInput?.device {
             setFocusPointOnDevice(device: device, point: point)
@@ -164,11 +164,11 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     // MARK: - Torch
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func hasTorch() -> Bool {
         return videoInput?.device.hasTorch ?? false
     }
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func currentTorchMode() -> AVCaptureDevice.TorchMode {
         guard let device = videoInput?.device else {
             return .off
@@ -186,7 +186,7 @@ class YPVideoCaptureHelper: NSObject {
     }
     
     // MARK: - Recording
-    
+    @available(iOS 14.0, macCatalyst 14.0, *)
     public func startRecording() {
         let outputURL = YPVideoProcessor.makeVideoPathURL(temporaryFolder: true, fileName: "recordedVideoRAW")
 
@@ -307,6 +307,7 @@ class YPVideoCaptureHelper: NSObject {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPVideoCaptureHelper: AVCaptureFileOutputRecordingDelegate {
     
     public func fileOutput(_ captureOutput: AVCaptureFileOutput,
