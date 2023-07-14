@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPLibraryVC: PHPhotoLibraryChangeObserver {
     func registerForLibraryChanges() {
         PHPhotoLibrary.shared().register(self)

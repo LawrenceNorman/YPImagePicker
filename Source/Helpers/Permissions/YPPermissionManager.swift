@@ -8,6 +8,7 @@
 import Photos
 import UIKit
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal struct YPPermissionManager {
     typealias YPPermissionManagerCompletion = (_ hasPermission: Bool) -> Void
 
@@ -15,11 +16,11 @@ internal struct YPPermissionManager {
                                                      completion: @escaping YPPermissionManagerCompletion) {
         var status: PHAuthorizationStatus
 
-        if #available(iOS 14, *) {
+        //if #available(iOS 14, *) {
             status = PHPhotoLibrary.authorizationStatus(for: .readWrite)
-        } else {
-            status = PHPhotoLibrary.authorizationStatus()
-        }
+        //} else {
+        //    status = PHPhotoLibrary.authorizationStatus()
+        //}
 
         switch status {
         case .authorized:
@@ -33,19 +34,19 @@ internal struct YPPermissionManager {
             sourceVC.present(alert, animated: true, completion: nil)
         case .notDetermined:
             // Show permission popup and get new status
-            if #available(iOS 14, *) {
+            //if #available(iOS 14, *) {
                 PHPhotoLibrary.requestAuthorization(for: .readWrite) { s in
                     DispatchQueue.main.async {
                         completion(s == .authorized || s == .limited)
                     }
                 }
-            } else {
-                PHPhotoLibrary.requestAuthorization { s in
-                    DispatchQueue.main.async {
-                        completion(s == .authorized)
-                    }
-                }
-            }
+            //} else {
+            //    PHPhotoLibrary.requestAuthorization { s in
+            //        DispatchQueue.main.async {
+            //            completion(s == .authorized)
+            //        }
+            //    }
+            //}
         @unknown default:
             ypLog("Bug. Write to developers please.")
         }

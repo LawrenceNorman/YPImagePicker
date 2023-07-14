@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPLibraryVC {
     var isLimitExceeded: Bool { return selectedItems.count >= YPConfig.library.maxNumberOfItems }
     
@@ -105,12 +106,14 @@ extension YPLibraryVC {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPLibraryVC: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mediaManager.fetchResult?.count ?? 0
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPLibraryVC: UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView,
@@ -212,6 +215,7 @@ extension YPLibraryVC: UICollectionViewDelegate {
     }
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 extension YPLibraryVC: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,

@@ -15,6 +15,7 @@ internal protocol YPPermissionCheckable {
     func checkCameraPermission()
 }
 
+@available(iOS 14.0, macCatalyst 14.0, *)
 internal extension YPPermissionCheckable where Self: UIViewController {
     func doAfterLibraryPermissionCheck(block: @escaping () -> Void) {
         YPPermissionManager.checkLibraryPermissionAndAskIfNeeded(sourceVC: self) { hasPermission in
