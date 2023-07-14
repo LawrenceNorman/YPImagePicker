@@ -9,27 +9,32 @@ import AVFoundation
 
 extension AVCaptureDevice {
     func tryToggleTorch() {
-        guard hasFlash else {
-            return
-        }
-
-        do {
-            try lockForConfiguration()
-
-            switch torchMode {
-            case .auto:
-                torchMode = .on
-            case .on:
-                torchMode = .off
-            case .off:
-                torchMode = .auto
-            @unknown default:
-                throw YPError.custom(message: "unknown default case")
+        if #available(iOS 14.0, macCatalyst 14.0, *) {
+            guard hasFlash else {
+                return
             }
 
-            unlockForConfiguration()
-        } catch {
-            ypLog("Error with torch \(error).")
+            do {
+                try lockForConfiguration()
+
+                switch torchMode {
+                case .auto:
+                    torchMode = .on
+                case .on:
+                    torchMode = .off
+                case .off:
+                    torchMode = .auto
+                @unknown default:
+                    throw YPError.custom(message: "unknown default case")
+                }
+
+                unlockForConfiguration()
+            } catch {
+                ypLog("Error with torch \(error).")
+            }
+        }
+        else {
+            // fallback for older versions
         }
     }
 }
